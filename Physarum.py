@@ -1,10 +1,11 @@
+import numpy as np
+
+
 def Physarum(L, source, sink):
     n = len(L[0:])
     D = 0.5 * np.ones([n,n])
     D[L == 0] = 0;
     L[L==0] = float('inf')
-    sourcenode = 1
-    sinknode = n
     A = np.zeros(n)
     A[source] = 1
     A[sink] = -1
@@ -20,4 +21,4 @@ def Physarum(L, source, sink):
         Q=abs(Q);
         tempD=D;
         D=(Q+D)/2;
-    return np.round(D)
+    return D
