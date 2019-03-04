@@ -11,14 +11,14 @@ def Physarum(L, source, sink):
     A[sink] = -1
     tempD = np.zeros([n,n])
     while sum(sum(np.abs(tempD-D))) >= 0.001:
-        B=D/L
+        B = D / L
         B = B - np.diag(sum(B))
         P = np.linalg.lstsq(B[:,:-1],A)[0]
         P = np.append(P, [0])
         temp = np.tile(P, [n,1])
         Pmat = temp.T - temp
-        Q=(D/L)*Pmat;
-        Q=abs(Q);
-        tempD=D;
-        D=(Q+D)/2;
+        Q = (D / L) * Pmat;
+        Q = abs(Q);
+        tempD = D.copy();
+        D = (Q + D) / 2;
     return D
